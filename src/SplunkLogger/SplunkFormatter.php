@@ -4,7 +4,7 @@ namespace SplunkLogger;
 
 use Monolog\Formatter\LineFormatter;
 
-class SplunkLineFormatter extends LineFormatter
+class SplunkFormatter extends LineFormatter
 {
     const FORMAT = "[%datetime%]app=%channel%,message=%message%,context=[%context%],extra=[%extra%]\n";
 

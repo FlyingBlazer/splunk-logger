@@ -16,7 +16,7 @@ class Logger
 
         $this->logger = new MonoLogger($log_prefix);
         $handler = new StreamHandler($log_path, MonoLogger::INFO);
-        $handler->setFormatter(new SplunkLineFormatter());
+        $handler->setFormatter(new SplunkFormatter());
         $this->logger->pushHandler($handler);
     }
 
