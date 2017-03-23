@@ -8,6 +8,6 @@ class SplunkLoggerFacade extends Facade
 {
     public static function getFacadeAccessor()
     {
-        return 'Splunk';
+        return 'SplunkLogger';
     }
 }
