@@ -20,7 +20,7 @@ class Logger
         $this->logger->pushHandler($handler);
     }
 
-    public function log($message, $context)
+    public function log($message, $context = [])
     {
         $this->logger->info($message, $context);
     }
