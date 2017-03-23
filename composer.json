@@ -1,0 +1,21 @@
+{
+    "name": "yuzhan/splunk-logger",
+    "description": "Logger for splunk",
+    "type": "library",
+    "require": {
+        "monolog/monolog": "^1.22",
+        "laravel/framework": "^5.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "于湛",
+            "email": "me@yuzhan.info"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SplunkLogger\\": "src/SplunkLogger"
+        }
+    }
+}
