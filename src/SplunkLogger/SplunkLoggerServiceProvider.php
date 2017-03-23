@@ -13,7 +13,7 @@ class SplunkLoggerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->instance('Splunk', function() {
+        $this->app->singleton('Splunk', function() {
             return new Logger();
         });
     }

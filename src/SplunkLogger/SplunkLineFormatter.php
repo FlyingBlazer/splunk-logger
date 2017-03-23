@@ -6,7 +6,7 @@ use Monolog\Formatter\LineFormatter;
 
 class SplunkLineFormatter extends LineFormatter
 {
-    const FORMAT = "[%datetime%]app=%channel%:message=%message%,context=[%context%],extra=[%extra%]\n";
+    const FORMAT = "[%datetime%]app=%channel%,message=%message%,context=[%context%],extra=[%extra%]\n";
 
     public function __construct()
     {
