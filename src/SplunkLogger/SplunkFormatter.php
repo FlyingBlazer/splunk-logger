@@ -6,7 +6,7 @@ use Monolog\Formatter\LineFormatter;
 
 class SplunkFormatter extends LineFormatter
 {
-    const FORMAT = "[%datetime%]app=%channel%,message=%message%,context=[%context%]\n";
+    const FORMAT = "[%datetime%] app=%channel% message=%message% context=[%context%]\n";
 
     public function __construct()
     {
@@ -19,10 +19,6 @@ class SplunkFormatter extends LineFormatter
             return var_export($data, true);
         }
 
-        if (is_string($data)) {
-            return preg_replace('/\s/', '_', $data);
-        }
-
         if (is_scalar($data)) {
             return (string) $data;
         }
@@ -31,18 +27,18 @@ class SplunkFormatter extends LineFormatter
             $ret = [];
 
             foreach ($data as $key => $value) {
-                $key = $prefix . preg_replace('/\s/', '_', $key);
-                if(is_array($value)) {
-                    $value = $this->convertToString($value, $key . '_');
+                if (null === $value || is_bool($value)) {
+                    $value = var_export($data, true);
+                } else if (is_scalar($value)) {
+                    $value = (string) $value;
                 } else {
-                    $value = $this->convertToString($value);
-                    $value = "$key=$value";
+                    $value = json_encode($value);
                 }
-                array_push($ret, $value);
+                array_push($ret, "$key=$value");
             }
-            return implode(',', $ret);
+            return implode(', ', $ret);
         }
 
-        return $this->convertToString(json_decode(json_encode($data)));
+        return json_encode($data);
     }
 }
