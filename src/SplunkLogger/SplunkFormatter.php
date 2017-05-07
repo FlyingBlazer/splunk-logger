@@ -28,7 +28,7 @@ class SplunkFormatter extends LineFormatter
 
             foreach ($data as $key => $value) {
                 if (null === $value || is_bool($value)) {
-                    $value = var_export($data, true);
+                    $value = var_export($value, true);
                 } else if (is_scalar($value)) {
                     $value = (string) $value;
                 } else {
