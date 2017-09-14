@@ -8,6 +8,8 @@ class SplunkFormatter extends LineFormatter
 {
     const FORMAT = "[%datetime%] app=%channel%, message=%message%, %context%\n";
 
+    const JSON_OPTION = JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES;
+
     public function __construct()
     {
         parent::__construct(self::FORMAT);
@@ -32,13 +34,13 @@ class SplunkFormatter extends LineFormatter
                 } else if (is_scalar($value)) {
                     $value = (string) $value;
                 } else {
-                    $value = json_encode($value);
+                    $value = json_encode($value, static::JSON_OPTION);
                 }
                 array_push($ret, "$key=$value");
             }
             return implode(', ', $ret);
         }
 
-        return json_encode($data);
+        return json_encode($data, static::JSON_OPTION);
     }
 }
